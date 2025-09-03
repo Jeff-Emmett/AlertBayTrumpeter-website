@@ -162,7 +162,8 @@ export default function ContactPage() {
               <div>
                 <h3 className="text-xl font-semibold text-slate-700 mb-4">Visit Alert Bay</h3>
                 <p className="text-slate-600 leading-relaxed">
-                  Alert Bay is located on Cormorant Island in British Columbia, Canada. The community is rich in Indigenous culture and maritime heritage. Come explore the wilderness of Vancouver Island!   
+                  Alert Bay is located on Cormorant Island in British Columbia, Canada. The community is rich in
+                  Indigenous culture and maritime heritage. Come explore the wilderness of Vancouver Island!
                 </p>
               </div>
             </div>

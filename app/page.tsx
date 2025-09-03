@@ -170,6 +170,28 @@ export default function HomePage() {
     return images[index] || images[0]
   }
 
+  const getSponsorCardClasses = (index: number) => {
+    const cardClasses = [
+      {
+        card: "text-center hover:shadow-xl transition-all duration-300 border-2 hover:border-orange-300 bg-gradient-to-b from-white to-orange-50",
+        title: "text-xl font-bold text-orange-600 mb-3",
+      },
+      {
+        card: "text-center hover:shadow-xl transition-all duration-300 border-2 hover:border-amber-400 bg-gradient-to-b from-white to-amber-50",
+        title: "text-xl font-bold text-amber-600 mb-3",
+      },
+      {
+        card: "text-center hover:shadow-xl transition-all duration-300 border-2 hover:border-gray-400 bg-gradient-to-b from-white to-gray-50",
+        title: "text-xl font-bold text-gray-600 mb-3",
+      },
+      {
+        card: "text-center hover:shadow-xl transition-all duration-300 border-2 hover:border-yellow-400 bg-gradient-to-b from-white to-yellow-50",
+        title: "text-xl font-bold text-yellow-600 mb-3",
+      },
+    ]
+    return cardClasses[index] || cardClasses[0]
+  }
+
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
@@ -275,12 +297,9 @@ export default function HomePage() {
               </div>
             ) : (
               subscriptionProducts.slice(0, 4).map((product, index) => {
-                const tierInfo = getSponsorTierInfo(index)
+                const cardClasses = getSponsorCardClasses(index)
                 return (
-                  <Card
-                    key={product.id}
-                    className={`text-center hover:shadow-xl transition-all duration-300 border-2 hover:border-${tierInfo.borderColor} bg-gradient-to-b ${tierInfo.bgGradient}`}
-                  >
+                  <Card key={product.id} className={cardClasses.card}>
                     <CardContent className="p-6">
                       <div className="w-full h-48 relative mb-6 rounded-lg overflow-hidden shadow-md">
                         <Image
@@ -290,7 +309,7 @@ export default function HomePage() {
                           className="object-contain hover:scale-105 transition-transform duration-300"
                         />
                       </div>
-                      <h3 className={`text-xl font-bold text-${tierInfo.color}-600 mb-3`}>{product.name}</h3>
+                      <h3 className={cardClasses.title}>{product.name}</h3>
                       <p className="text-2xl font-semibold text-gray-800 mb-4">
                         {formatPrice(product.price, product.currency)}/month
                       </p>
