@@ -37,9 +37,9 @@ export default function JerryStoryPage() {
       </header>
 
       {/* Jerry's Story Content */}
-      <section className="py-16 px-6 bg-slate-700">
+      <section className="py-16 px-6 bg-white">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl font-serif font-bold text-white mb-8 text-center">Jerry's Story</h1>
+          <h1 className="text-4xl font-serif font-bold text-slate-700 mb-8 text-center">Jerry's Story</h1>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
             <div className="rounded-lg overflow-hidden shadow-lg">
@@ -66,29 +66,29 @@ export default function JerryStoryPage() {
           </div>
 
           <div className="max-w-3xl mx-auto space-y-6">
-            <p className="text-white leading-relaxed">
+            <p className="text-slate-700 leading-relaxed">
               Jerry Higginson has been the Alert Bay Trumpeter for over 27 years, bringing joy and music to cruise ship
               passengers traveling through the beautiful waters of northern Vancouver Island.
             </p>
 
-            <p className="text-white leading-relaxed">
+            <p className="text-slate-700 leading-relaxed">
               Since 1996, Jerry has performed over 1000 nautical serenades, creating unforgettable memories for millions
               of passengers from around the world. His dedication to spreading happiness through music has made him a
               beloved figure in the maritime community.
             </p>
 
-            <p className="text-white leading-relaxed">
+            <p className="text-slate-700 leading-relaxed">
               From his small boat, Jerry greets each passing cruise ship with enthusiasm and his signature trumpet
               performances, embodying the spirit of Alert Bay and the warmth of Canadian hospitality.
             </p>
 
-            <p className="text-white leading-relaxed">
+            <p className="text-slate-700 leading-relaxed">
               Jerry's mission is simple: to bring smiles to people's faces and create magical moments at sea. His
               passion for music and connection with travelers has made him an integral part of the cruise experience
               through the Johnstone Straits.
             </p>
 
-            <div className="mt-8 pt-6 border-t border-slate-500 text-center">
+            <div className="mt-8 pt-6 border-t border-gray-200 text-center">
               <div className="mb-6">
                 <img
                   src="/images/jerry-masks-display.jpeg"
