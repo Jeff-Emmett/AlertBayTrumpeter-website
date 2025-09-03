@@ -1,24 +1,13 @@
 "use client"
 
-import type React from "react"
-
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
 import { useState } from "react"
 
 export default function ContactPage() {
   const [isLoading, setIsLoading] = useState(false)
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleMonthlySponsorship = async () => {
     setIsLoading(true)
@@ -51,42 +40,6 @@ export default function ContactPage() {
     } finally {
       setIsLoading(false)
     }
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-
-    try {
-      console.log("[v0] Submitting contact form:", formData)
-
-      const response = await fetch("/api/send-email", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      })
-
-      if (!response.ok) {
-        const errorData = await response.json()
-        throw new Error(errorData.error || "Failed to send message")
-      }
-
-      // Reset form on success
-      setFormData({ name: "", email: "", subject: "", message: "" })
-      alert("Message sent successfully! Jerry will get back to you soon.")
-    } catch (error) {
-      console.error("Error sending message:", error)
-      alert("There was an error sending your message. Please try again.")
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { id, value } = e.target
-    setFormData((prev) => ({ ...prev, [id]: value }))
   }
 
   return (
@@ -133,72 +86,40 @@ export default function ContactPage() {
             {/* Contact Form */}
             <Card className="shadow-xl border-2 border-blue-100 bg-gradient-to-b from-white to-blue-50">
               <CardHeader>
-                <CardTitle className="text-2xl text-slate-700">Send Jerry a Message</CardTitle>
+                <CardTitle className="text-2xl text-slate-700">Contact Jerry Directly</CardTitle>
               </CardHeader>
-              <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-1">
-                      Name
-                    </label>
-                    <Input
-                      id="name"
-                      placeholder="Your name"
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      required
-                    />
+              <CardContent className="space-y-6">
+                <div className="text-center">
+                  <p className="text-slate-600 mb-6 leading-relaxed">
+                    Ready to get in touch with Jerry? Reach out directly using his contact information below.
+                  </p>
+
+                  <div className="space-y-4">
+                    <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
+                      <h3 className="font-semibold text-slate-700 mb-2">Email</h3>
+                      <a
+                        href="mailto:alertbaytrumpeter@icloud.com"
+                        className="text-blue-600 hover:text-blue-800 font-medium text-lg transition-colors"
+                      >
+                        alertbaytrumpeter@icloud.com
+                      </a>
+                    </div>
+
+                    <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
+                      <h3 className="font-semibold text-slate-700 mb-2">Phone</h3>
+                      <a
+                        href="tel:250-641-6204"
+                        className="text-blue-600 hover:text-blue-800 font-medium text-lg transition-colors"
+                      >
+                        250 - 641- 6204
+                      </a>
+                    </div>
                   </div>
 
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-1">
-                      Email
-                    </label>
-                    <Input
-                      id="email"
-                      type="email"
-                      placeholder="your.email@example.com"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      required
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="subject" className="block text-sm font-medium text-slate-700 mb-1">
-                      Subject
-                    </label>
-                    <Input
-                      id="subject"
-                      placeholder="Message subject"
-                      value={formData.subject}
-                      onChange={handleInputChange}
-                      required
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-slate-700 mb-1">
-                      Message
-                    </label>
-                    <Textarea
-                      id="message"
-                      placeholder="Your message to Jerry..."
-                      rows={6}
-                      value={formData.message}
-                      onChange={handleInputChange}
-                      required
-                    />
-                  </div>
-
-                  <Button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full bg-blue-800 hover:bg-blue-600 shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50"
-                  >
-                    {isSubmitting ? "Sending..." : "Send Message"}
-                  </Button>
-                </form>
+                  <p className="text-sm text-slate-500 mt-4">
+                    Jerry loves hearing from visitors and fellow music enthusiasts!
+                  </p>
+                </div>
               </CardContent>
             </Card>
 
@@ -241,8 +162,7 @@ export default function ContactPage() {
               <div>
                 <h3 className="text-xl font-semibold text-slate-700 mb-4">Visit Alert Bay</h3>
                 <p className="text-slate-600 leading-relaxed">
-                  Alert Bay is located on Cormorant Island in British Columbia, Canada. The community is rich in
-                  Indigenous culture and maritime heritage.
+                  Alert Bay is located on Cormorant Island in British Columbia, Canada. The community is rich in Indigenous culture and maritime heritage. Come explore the wilderness of Vancouver Island!   
                 </p>
               </div>
             </div>
