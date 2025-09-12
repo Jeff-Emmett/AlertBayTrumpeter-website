@@ -204,25 +204,25 @@ export default function HomePage() {
           <nav className="mt-8 flex justify-center space-x-8 text-base">
             <Link
               href="/"
-              className="text-blue-100 hover:text-white font-bold transition-colors duration-200 border-b-2 border-transparent hover:border-white pb-1"
+              className="text-white hover:text-blue-100 font-bold transition-colors duration-200 border-b-2 border-transparent hover:border-blue-100 pb-1"
             >
               Home
             </Link>
             <Link
               href="/jerry-story"
-              className="text-blue-100 hover:text-white font-bold transition-colors duration-200 border-b-2 border-transparent hover:border-white pb-1"
+              className="text-white hover:text-blue-100 font-bold transition-colors duration-200 border-b-2 border-transparent hover:border-blue-100 pb-1"
             >
               Jerry's Story
             </Link>
             <Link
               href="/masks-art"
-              className="text-blue-100 hover:text-white font-bold transition-colors duration-200 border-b-2 border-transparent hover:border-white pb-1"
+              className="text-white hover:text-blue-100 font-bold transition-colors duration-200 border-b-2 border-transparent hover:border-blue-100 pb-1"
             >
               Traditional Indigenous Masks & Art
             </Link>
             <Link
               href="/contact"
-              className="text-blue-100 hover:text-white font-bold transition-colors duration-200 border-b-2 border-transparent hover:border-white pb-1"
+              className="text-white hover:text-blue-100 font-bold transition-colors duration-200 border-b-2 border-transparent hover:border-blue-100 pb-1"
             >
               Get in Touch
             </Link>

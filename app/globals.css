@@ -1,8 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
-
 :root {
   --font-inter: var(--font-inter);
   --font-playfair: var(--font-playfair);
@@ -119,10 +117,9 @@
 
 @layer base {
   * {
-    border-color: var(--color-border);
+    @apply border-border outline-ring/50;
   }
   body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
+    @apply bg-background text-foreground;
   }
 }
