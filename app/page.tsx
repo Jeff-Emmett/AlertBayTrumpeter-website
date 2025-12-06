@@ -50,21 +50,14 @@ export default function HomePage() {
     try {
       console.log("[v0] Starting donation process for product:", product.name)
 
-      let requestBody: any
-
-      if (product.lookup_key) {
-        // Use lookup_key for one-time donations (legacy sponsor tiers)
-        requestBody = { lookup_key: product.lookup_key }
-      } else {
-        // Use product info for subscription checkouts
-        requestBody = {
-          productId: product.id,
-          productName: product.name,
-          price: product.price,
-          currency: product.currency,
-          description: product.description,
-          mode: "subscription",
-        }
+      // Always use subscription mode for products fetched from Stripe
+      const requestBody = {
+        productId: product.id,
+        productName: product.name,
+        price: product.price,
+        currency: product.currency,
+        description: product.description,
+        mode: "subscription",
       }
 
       const response = await fetch("/api/create-checkout-session", {

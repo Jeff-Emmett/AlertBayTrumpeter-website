@@ -3,8 +3,22 @@ import Stripe from "stripe"
 
 export const runtime = "edge"
 
+function getBaseUrl(request: NextRequest): string {
+  // Use environment variable if set, otherwise construct from headers
+  if (process.env.NEXT_PUBLIC_BASE_URL) {
+    return process.env.NEXT_PUBLIC_BASE_URL
+  }
+  const host = request.headers.get("host") || request.headers.get("x-forwarded-host")
+  const protocol = request.headers.get("x-forwarded-proto") || "https"
+  if (host) {
+    return `${protocol}://${host}`
+  }
+  return "https://alertbaytrumpeter.com"
+}
+
 export async function POST(request: NextRequest) {
   try {
+    const baseUrl = getBaseUrl(request)
     const stripeSecretKey = process.env.STRIPE_SECRET_KEY
 
     if (!stripeSecretKey) {
@@ -60,8 +74,8 @@ export async function POST(request: NextRequest) {
             quantity: 1,
           },
         ],
-        success_url: `${request.nextUrl.origin}/success?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${request.nextUrl.origin}/cancel`,
+        success_url: `${baseUrl}/success?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${baseUrl}/cancel`,
       })
 
       console.log("[v0] Subscription checkout session created successfully:", session.id)
@@ -89,8 +103,8 @@ export async function POST(request: NextRequest) {
             quantity: 1,
           },
         ],
-        success_url: `${request.nextUrl.origin}/success?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${request.nextUrl.origin}/cancel`,
+        success_url: `${baseUrl}/success?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${baseUrl}/cancel`,
       })
 
       console.log("[v0] Monthly subscription checkout session created successfully:", session.id)
@@ -140,8 +154,8 @@ export async function POST(request: NextRequest) {
           quantity: 1,
         },
       ],
-      success_url: `${request.nextUrl.origin}/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${request.nextUrl.origin}/cancel`,
+      success_url: `${baseUrl}/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${baseUrl}/cancel`,
     })
 
     console.log("[v0] Checkout session created successfully:", session.id)

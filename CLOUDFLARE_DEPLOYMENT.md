@@ -56,6 +56,7 @@ Add these environment variables in Cloudflare Pages dashboard:
 - `STRIPE_PUBLISHABLE_KEY`
 - `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`
 - `STRIPE_WEBHOOK_SECRET`
+- `SENDGRID_API_KEY` - For sending notification emails (thank you emails after purchases)
 
 ## Important Notes
 

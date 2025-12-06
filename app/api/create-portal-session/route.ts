@@ -3,8 +3,21 @@ import Stripe from "stripe"
 
 export const runtime = "edge"
 
+function getBaseUrl(request: NextRequest): string {
+  if (process.env.NEXT_PUBLIC_BASE_URL) {
+    return process.env.NEXT_PUBLIC_BASE_URL
+  }
+  const host = request.headers.get("host") || request.headers.get("x-forwarded-host")
+  const protocol = request.headers.get("x-forwarded-proto") || "https"
+  if (host) {
+    return `${protocol}://${host}`
+  }
+  return "https://alertbaytrumpeter.com"
+}
+
 export async function POST(request: NextRequest) {
   try {
+    const baseUrl = getBaseUrl(request)
     const stripeSecretKey = process.env.STRIPE_SECRET_KEY?.trim()
 
     if (!stripeSecretKey) {
@@ -25,7 +38,7 @@ export async function POST(request: NextRequest) {
 
     const portalSession = await stripe.billingPortal.sessions.create({
       customer: checkoutSession.customer as string,
-      return_url: `${request.nextUrl.origin}`,
+      return_url: baseUrl,
     })
 
     return NextResponse.json({ url: portalSession.url })
